@@ -1,0 +1,3016 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSchool Manager — Maquettes UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0d2347;
+        --blue: #1a4fc4;
+        --blue2: #2563eb;
+        --lb: #dbeafe;
+        --gold: #d97706;
+        --lg: #fef3c7;
+        --eco: #92400e;
+        --ecoL: #fffbeb;
+        --green: #059669;
+        --greenL: #ecfdf5;
+        --purp: #7c3aed;
+        --purpL: #f5f3ff;
+        --red: #dc2626;
+        --redL: #fef2f2;
+        --gray: #f8fafc;
+        --bdr: #e2e8f0;
+        --txt: #0f172a;
+        --mut: #64748b;
+        --white: #ffffff;
+        --sidebar-w: 260px;
+        --hdr-h: 52px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        background: #eef2f7;
+        color: var(--txt);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* ── SIDEBAR ── */
+      #sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        background: var(--navy);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .sb-logo {
+        padding: 18px 20px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .sb-logo h1 {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+      }
+      .sb-logo p {
+        color: #7094c4;
+        font-size: 11px;
+        margin-top: 2px;
+      }
+      .sb-count {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: rgba(37, 99, 235, 0.25);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .sb-count span {
+        color: #93b8e8;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .sb-count strong {
+        color: #fff;
+        font-size: 13px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .sb-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px 0;
+      }
+      .sb-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sb-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 2px;
+      }
+      .sb-group {
+        padding: 10px 20px 4px;
+      }
+      .sb-group-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: #4a6fa5;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .sb-group-lbl .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .sb-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 1px;
+        transition: all 0.15s;
+      }
+      .sb-item:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .sb-item.active {
+        background: var(--blue2);
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+      }
+      .sb-item .num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        color: #4a6fa5;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 2px 6px;
+        border-radius: 4px;
+        min-width: 26px;
+        text-align: center;
+      }
+      .sb-item.active .num {
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .sb-item .lbl {
+        font-size: 12px;
+        color: #93b8e8;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+      .sb-item.active .lbl {
+        color: #fff;
+      }
+
+      /* ── MAIN ── */
+      #main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      #topbar {
+        height: var(--hdr-h);
+        background: #fff;
+        border-bottom: 1px solid var(--bdr);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        flex-shrink: 0;
+      }
+      #topbar h2 {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      #topbar p {
+        font-size: 12px;
+        color: var(--mut);
+      }
+      .top-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .role-badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .nav-btns {
+        display: flex;
+        gap: 6px;
+      }
+      .nav-btn {
+        background: var(--gray);
+        border: 1px solid var(--bdr);
+        border-radius: 6px;
+        padding: 5px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--navy);
+        transition: all 0.15s;
+      }
+      .nav-btn:hover {
+        background: var(--lb);
+        border-color: var(--blue2);
+        color: var(--blue2);
+      }
+
+      #canvas {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background: #eef2f7;
+      }
+      #canvas::-webkit-scrollbar {
+        width: 6px;
+      }
+      #canvas::-webkit-scrollbar-thumb {
+        background: var(--bdr);
+        border-radius: 3px;
+      }
+
+      /* ── MOCKUP FRAME ── */
+      .mockup {
+        background: #fff;
+        border-radius: 14px;
+        min-height: calc(100vh - 135px);
+        box-shadow: 0 4px 24px rgba(13, 35, 71, 0.08);
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* ════════════════════════════════════
+   SHARED COMPONENTS INSIDE MOCKUPS
+════════════════════════════════════ */
+      .m-appbar {
+        background: var(--navy);
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+      .m-appbar-logo {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .m-appbar-user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .m-appbar-user .av {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .m-appbar-user .uinfo {
+        text-align: right;
+      }
+      .m-appbar-user .uname {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .m-appbar-user .urole {
+        color: #7094c4;
+        font-size: 10px;
+      }
+
+      .m-layout {
+        display: flex;
+        height: calc(100% - 54px);
+      }
+      .m-nav {
+        width: 200px;
+        background: #f8fafc;
+        border-right: 1px solid var(--bdr);
+        padding: 12px 0;
+        flex-shrink: 0;
+      }
+      .m-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--mut);
+        font-weight: 500;
+      }
+      .m-nav-item.act {
+        color: var(--blue2);
+        background: var(--lb);
+        border-right: 2px solid var(--blue2);
+      }
+      .m-nav-item .ico {
+        font-size: 14px;
+      }
+      .m-content {
+        flex: 1;
+        padding: 20px;
+        overflow: auto;
+        background: #f8fafc;
+      }
+
+      /* Cards */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .kpi-card {
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .kpi-val {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .kpi-lbl {
+        font-size: 11px;
+        color: var(--mut);
+        margin-top: 2px;
+        font-weight: 500;
+      }
+      .kpi-chg {
+        font-size: 11px;
+        margin-top: 4px;
+      }
+
+      .section-hdr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .section-hdr h3 {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .btn-sm {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .btn-primary {
+        background: var(--blue2);
+        color: #fff;
+      }
+      .btn-ghost {
+        background: var(--gray);
+        color: var(--navy);
+        border: 1px solid var(--bdr);
+      }
+      .btn-eco {
+        background: var(--eco);
+        color: #fff;
+      }
+      .btn-green {
+        background: var(--green);
+        color: #fff;
+      }
+
+      /* Table */
+      .m-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      .m-table th {
+        background: var(--navy);
+        color: #fff;
+        padding: 8px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 11px;
+      }
+      .m-table td {
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--bdr);
+      }
+      .m-table tr:hover td {
+        background: #f0f7ff;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+      .badge-green {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .badge-red {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .badge-gold {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .badge-blue {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .badge-gray {
+        background: #f1f5f9;
+        color: #475569;
+      }
+      .badge-purp {
+        background: #f5f3ff;
+        color: #6d28d9;
+      }
+
+      /* Form */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .form-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .form-input {
+        border: 1px solid var(--bdr);
+        border-radius: 6px;
+        padding: 8px 10px;
+        font-size: 12px;
+        background: #fff;
+        color: var(--txt);
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--blue2);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+      .form-select {
+        border: 1px solid var(--bdr);
+        border-radius: 6px;
+        padding: 7px 10px;
+        font-size: 12px;
+        background: #fff;
+        color: var(--txt);
+      }
+
+      /* Alert */
+      .alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        font-size: 12px;
+      }
+      .alert-red {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #b91c1c;
+      }
+      .alert-gold {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        color: #92400e;
+      }
+      .alert-blue {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #1d4ed8;
+      }
+      .alert-green {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #15803d;
+      }
+
+      /* Stat bar */
+      .stat-bar {
+        height: 6px;
+        background: var(--bdr);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 4px;
+      }
+      .stat-fill {
+        height: 100%;
+        border-radius: 3px;
+      }
+
+      /* ── CONNEXION page ── */
+      .login-page {
+        min-height: 100%;
+        background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .login-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 36px;
+        width: 340px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      .login-box h2 {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .login-box p {
+        font-size: 12px;
+        color: var(--mut);
+        margin-bottom: 24px;
+      }
+
+      /* ── BULLETIN preview ── */
+      .bulletin {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        font-size: 11px;
+      }
+      .bull-hdr {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 2px solid var(--navy);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .bull-school {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .bull-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      .bull-table th {
+        background: var(--navy);
+        color: #fff;
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+      .bull-table td {
+        padding: 5px 8px;
+        border: 1px solid #ddd;
+        font-size: 10px;
+      }
+
+      /* Graph bar */
+      .chart-bar-wrap {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        height: 80px;
+        margin-top: 8px;
+      }
+      .chart-bar-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+      }
+      .chart-bar {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        min-height: 4px;
+      }
+      .chart-lbl {
+        font-size: 9px;
+        color: var(--mut);
+      }
+
+      /* Notes grid */
+      .notes-grid {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+      }
+      .notes-grid th {
+        background: var(--navy);
+        color: #fff;
+        padding: 7px 10px;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 600;
+      }
+      .notes-grid td {
+        padding: 7px 10px;
+        border: 1px solid var(--bdr);
+        text-align: center;
+      }
+      .notes-grid .eleve-name {
+        text-align: left;
+        font-weight: 500;
+      }
+      .note-input {
+        width: 46px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 3px 4px;
+        text-align: center;
+        font-size: 11px;
+      }
+      .note-high {
+        background: #dcfce7;
+        border-color: #86efac;
+      }
+      .note-mid {
+        background: #fef9c3;
+        border-color: #fde047;
+      }
+      .note-low {
+        background: #fee2e2;
+        border-color: #fca5a5;
+      }
+
+      /* Reçu */
+      .recu-box {
+        border: 2px solid var(--navy);
+        border-radius: 8px;
+        padding: 16px;
+        max-width: 320px;
+      }
+      .recu-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--eco);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+    <nav id="sidebar">
+      <div class="sb-logo">
+        <h1>EduSchool Manager</h1>
+        <p>Maquettes UI — v1.0</p>
+      </div>
+      <div class="sb-count"><strong>26</strong><span>pages au total</span></div>
+      <div class="sb-scroll">
+        <!-- AUTH -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #94a3b8"></span
+            >Authentification
+          </div>
+          <div class="sb-item active" onclick="go(1, this)">
+            <span class="num">01</span><span class="lbl">Connexion</span>
+          </div>
+        </div>
+
+        <!-- DIRECTEUR -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #2563eb"></span>Directeur
+          </div>
+          <div class="sb-item" onclick="go(2, this)">
+            <span class="num">02</span
+            ><span class="lbl">Dashboard Directeur</span>
+          </div>
+          <div class="sb-item" onclick="go(3, this)">
+            <span class="num">03</span
+            ><span class="lbl">Gestion utilisateurs</span>
+          </div>
+          <div class="sb-item" onclick="go(4, this)">
+            <span class="num">04</span
+            ><span class="lbl">Statistiques globales</span>
+          </div>
+          <div class="sb-item" onclick="go(5, this)">
+            <span class="num">05</span><span class="lbl">Journal d'audit</span>
+          </div>
+          <div class="sb-item" onclick="go(6, this)">
+            <span class="num">06</span><span class="lbl">Config. école</span>
+          </div>
+        </div>
+
+        <!-- SECRÉTAIRE -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #059669"></span>Secrétaire
+          </div>
+          <div class="sb-item" onclick="go(7, this)">
+            <span class="num">07</span
+            ><span class="lbl">Dashboard Secrétaire</span>
+          </div>
+          <div class="sb-item" onclick="go(8, this)">
+            <span class="num">08</span><span class="lbl">Liste des élèves</span>
+          </div>
+          <div class="sb-item" onclick="go(9, this)">
+            <span class="num">09</span><span class="lbl">Fiche élève</span>
+          </div>
+          <div class="sb-item" onclick="go(10, this)">
+            <span class="num">10</span
+            ><span class="lbl">Inscrire un élève</span>
+          </div>
+          <div class="sb-item" onclick="go(11, this)">
+            <span class="num">11</span
+            ><span class="lbl">Liste des classes</span>
+          </div>
+          <div class="sb-item" onclick="go(12, this)">
+            <span class="num">12</span><span class="lbl">Détail classe</span>
+          </div>
+        </div>
+
+        <!-- ENSEIGNANT -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #7c3aed"></span>Enseignant
+          </div>
+          <div class="sb-item" onclick="go(13, this)">
+            <span class="num">13</span
+            ><span class="lbl">Dashboard Enseignant</span>
+          </div>
+          <div class="sb-item" onclick="go(14, this)">
+            <span class="num">14</span><span class="lbl">Mes classes</span>
+          </div>
+          <div class="sb-item" onclick="go(15, this)">
+            <span class="num">15</span><span class="lbl">Saisie des notes</span>
+          </div>
+          <div class="sb-item" onclick="go(16, this)">
+            <span class="num">16</span><span class="lbl">Aperçu bulletin</span>
+          </div>
+          <div class="sb-item" onclick="go(17, this)">
+            <span class="num">17</span
+            ><span class="lbl">Impression en masse</span>
+          </div>
+        </div>
+
+        <!-- ÉCONOME -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #d97706"></span>Économe
+          </div>
+          <div class="sb-item" onclick="go(18, this)">
+            <span class="num">18</span
+            ><span class="lbl">Dashboard Économe</span>
+          </div>
+          <div class="sb-item" onclick="go(19, this)">
+            <span class="num">19</span
+            ><span class="lbl">Enregistrer paiement</span>
+          </div>
+          <div class="sb-item" onclick="go(20, this)">
+            <span class="num">20</span
+            ><span class="lbl">Liste des paiements</span>
+          </div>
+          <div class="sb-item" onclick="go(21, this)">
+            <span class="num">21</span><span class="lbl">Aperçu reçu</span>
+          </div>
+          <div class="sb-item" onclick="go(22, this)">
+            <span class="num">22</span><span class="lbl">Impayés</span>
+          </div>
+          <div class="sb-item" onclick="go(23, this)">
+            <span class="num">23</span
+            ><span class="lbl">Config. des frais</span>
+          </div>
+          <div class="sb-item" onclick="go(24, this)">
+            <span class="num">24</span
+            ><span class="lbl">Rapport financier</span>
+          </div>
+        </div>
+
+        <!-- PARTAGÉES -->
+        <div class="sb-group">
+          <div class="sb-group-lbl">
+            <span class="dot" style="background: #94a3b8"></span>Commun
+          </div>
+          <div class="sb-item" onclick="go(25, this)">
+            <span class="num">25</span
+            ><span class="lbl">Mon profil / Compte</span>
+          </div>
+          <div class="sb-item" onclick="go(26, this)">
+            <span class="num">26</span
+            ><span class="lbl">Config. année scolaire</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+    <div id="main">
+      <div id="topbar">
+        <div>
+          <h2 id="page-title">Page 01 — Connexion</h2>
+          <p id="page-sub">Authentification · Sans rôle requis</p>
+        </div>
+        <div class="top-right">
+          <span
+            class="role-badge"
+            id="role-badge"
+            style="background: #f1f5f9; color: #475569"
+            >— Auth</span
+          >
+          <div class="nav-btns">
+            <button class="nav-btn" onclick="prev()">← Préc.</button>
+            <button class="nav-btn" onclick="next()">Suiv. →</button>
+          </div>
+        </div>
+      </div>
+      <div id="canvas">
+        <div class="mockup" id="mockup-content"></div>
+      </div>
+    </div>
+
+    <script>
+      const pages = [
+        {
+          id: 1,
+          title: "Page 01 — Connexion",
+          sub: "Authentification · Sans rôle requis",
+          role: "Auth",
+          roleColor: "#F1F5F9",
+          roleTxt: "#475569",
+          html: `
+<div class="login-page" style="min-height:640px">
+  <div>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-.5px">EduSchool Manager</div>
+      <div style="color:#7094C4;font-size:13px;margin-top:4px">Plateforme de gestion scolaire</div>
+    </div>
+    <div class="login-box">
+      <h2>Connexion</h2>
+      <p>Entrez vos identifiants pour accéder à votre espace</p>
+      <div style="margin-bottom:14px">
+        <label class="form-label" style="display:block;margin-bottom:5px">Adresse email</label>
+        <input class="form-input" style="width:100%" placeholder="directeur@ecole.cm" type="email">
+      </div>
+      <div style="margin-bottom:20px">
+        <label class="form-label" style="display:block;margin-bottom:5px">Mot de passe</label>
+        <input class="form-input" style="width:100%" placeholder="••••••••" type="password">
+        <div style="text-align:right;margin-top:6px"><a style="font-size:11px;color:#2563EB;cursor:pointer">Mot de passe oublié ?</a></div>
+      </div>
+      <button class="btn-sm btn-primary" style="width:100%;padding:11px;font-size:13px;border-radius:8px;justify-content:center">Se connecter</button>
+      <div style="margin-top:20px;background:#FEF3C7;border-radius:8px;padding:10px 12px">
+        <div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:6px">Comptes de démonstration</div>
+        <div style="font-size:11px;color:#78350F;line-height:1.8">
+          directeur@ecole.cm · <span style="font-family:monospace">dir123</span><br>
+          secretaire@ecole.cm · <span style="font-family:monospace">sec123</span><br>
+          enseignant@ecole.cm · <span style="font-family:monospace">ens123</span><br>
+          economе@ecole.cm · <span style="font-family:monospace">eco123</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;color:#4A6FA5;font-size:11px">
+      © 2026 EduSchool Manager · Confidentiel
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 2,
+          title: "Page 02 — Dashboard Directeur",
+          sub: "Directeur · Vue globale temps réel",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar">
+  <div class="m-appbar-logo">EduSchool Manager</div>
+  <div class="m-appbar-user">
+    <div class="m-appbar-user uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div>
+    <div class="av" style="background:#2563EB">DJ</div>
+  </div>
+</div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item act"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div><div style="font-size:16px;font-weight:800;color:#0D2347">Bonjour, M. Dupont 👋</div>
+      <div style="font-size:12px;color:#64748B">Année 2025-2026 · Séquence 3 en cours</div></div>
+      <span class="badge badge-blue">Séquence 3 active</span>
+    </div>
+    <div class="alert alert-gold">⚠️ <span><strong>4 classes</strong> ont des notes manquantes — clôture dans <strong>5 jours</strong></span></div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">347</div><div class="kpi-lbl">Élèves inscrits</div><div class="kpi-chg" style="color:#059669">↑ +12 ce mois</div></div>
+      <div class="kpi-card"><div class="kpi-val">18</div><div class="kpi-lbl">Classes actives</div><div class="kpi-chg" style="color:#64748B">6 niveaux</div></div>
+      <div class="kpi-card"><div class="kpi-val">13,4</div><div class="kpi-lbl">Moy. générale /20</div><div class="kpi-chg" style="color:#059669">↑ +0,3 vs Séq.2</div></div>
+      <div class="kpi-card"><div class="kpi-val">78%</div><div class="kpi-lbl">Taux recouvrement</div><div class="kpi-chg" style="color:#DC2626">↓ objectif 90%</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Réussite par classe</h3></div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:8px">Moyenne générale par niveau</div>
+        ${["CP·14.2", "CE1·13.8", "CE2·13.1", "CM1·14.5", "CM2·12.9", "6e·13.7"]
+          .map((c, i) => {
+            const [lbl, val] = c.split("·");
+            const pct = Math.round((parseFloat(val) / 20) * 100);
+            const col = [
+              "#2563EB",
+              "#059669",
+              "#7C3AED",
+              "#D97706",
+              "#DC2626",
+              "#0891B2",
+            ][i];
+            return `<div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:11px"><span style="font-weight:600">${lbl}</span><span style="color:#64748B">${val}/20</span></div><div class="stat-bar"><div class="stat-fill" style="width:${pct}%;background:${col}"></div></div></div>`;
+          })
+          .join("")}
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Alertes prioritaires</h3></div>
+        ${[
+          ["🔴", "Notes manquantes", "CM2-A Mathématiques", "Critique"],
+          ["🟠", "Bulletin non validé", "CE2-B Séquence 2", "Haute"],
+          ["🟡", "Impayé élevé", "12 élèves > 50 000 FCFA", "Moyenne"],
+          ["🟢", "Séquence 3 ouverte", "Toutes classes configurées", "Info"],
+        ]
+          .map(
+            ([ic, t, d, b]) =>
+              `<div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #F1F5F9">
+            <span style="font-size:14px">${ic}</span>
+            <div style="flex:1"><div style="font-size:12px;font-weight:600">${t}</div>
+            <div style="font-size:11px;color:#64748B">${d}</div></div>
+            <span class="badge badge-${b === "Critique" ? "red" : b === "Haute" ? "gold" : b === "Moyenne" ? "blue" : "green"}">${b}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 3,
+          title: "Page 03 — Gestion des utilisateurs",
+          sub: "Directeur · Créer et gérer les comptes",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div><div class="av" style="background:#2563EB">DJ</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Gestion des utilisateurs</h3><button class="btn-sm btn-primary">+ Nouveau compte</button></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+      ${[
+        ["8", "Directeurs", "#2563EB", "DBEAFE"],
+        ["4", "Secrétaires", "#059669", "DCFCE7"],
+        ["22", "Enseignants", "#7C3AED", "F5F3FF"],
+        ["3", "Économes", "#D97706", "FEF3C7"],
+      ]
+        .map(
+          ([n, l, c, bg]) =>
+            `<div style="background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:12px;border-left:3px solid #${c.replace("#", "")}">
+          <div style="font-size:20px;font-weight:800;color:#${c.replace("#", "")}">${n}</div>
+          <div style="font-size:11px;color:#64748B">${l}</div>
+        </div>`,
+        )
+        .join("")}
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      <div style="padding:12px 14px;border-bottom:1px solid #E2E8F0;display:flex;gap:8px">
+        <input class="form-input" placeholder="Rechercher un utilisateur..." style="flex:1">
+        <select class="form-select"><option>Tous les rôles</option><option>Directeur</option><option>Secrétaire</option><option>Enseignant</option><option>Économe</option></select>
+        <select class="form-select"><option>Tous les statuts</option><option>Actif</option><option>Inactif</option></select>
+      </div>
+      <table class="m-table">
+        <thead><tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Dernière connexion</th><th>Statut</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${[
+            [
+              "Dupont Jean",
+              "j.dupont@ecole.cm",
+              "Directeur",
+              "badge-blue",
+              "Aujourd'hui 08:32",
+              "Actif",
+            ],
+            [
+              "Mballa Claire",
+              "c.mballa@ecole.cm",
+              "Secrétaire",
+              "badge-green",
+              "Hier 16:45",
+              "Actif",
+            ],
+            [
+              "Nkodo Pierre",
+              "p.nkodo@ecole.cm",
+              "Enseignant",
+              "badge-purp",
+              "12/03/2026",
+              "Actif",
+            ],
+            [
+              "Fouda Marie",
+              "m.fouda@ecole.cm",
+              "Économe",
+              "badge-gold",
+              "Aujourd'hui 09:15",
+              "Actif",
+            ],
+            [
+              "Biya Samuel",
+              "s.biya@ecole.cm",
+              "Enseignant",
+              "badge-purp",
+              "05/03/2026",
+              "Actif",
+            ],
+            [
+              "Essomba Rose",
+              "r.essomba@ecole.cm",
+              "Secrétaire",
+              "badge-green",
+              "—",
+              "Inactif",
+            ],
+          ]
+            .map(
+              ([n, e, r, rb, d, s]) => `
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#${rb === "badge-blue" ? "DBEAFE" : rb === "badge-green" ? "DCFCE7" : rb === "badge-purp" ? "F5F3FF" : "FEF3C7"};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#${rb === "badge-blue" ? "1D4ED8" : rb === "badge-green" ? "15803D" : rb === "badge-purp" ? "6D28D9" : "92400E"}">${n
+              .split(" ")
+              .map((w) => w[0])
+              .join(
+                "",
+              )}</div><span style="font-weight:600;font-size:12px">${n}</span></div></td>
+            <td style="font-size:11px;color:#64748B">${e}</td>
+            <td><span class="badge ${rb}">${r}</span></td>
+            <td style="font-size:11px;color:#64748B">${d}</td>
+            <td><span class="badge ${s === "Actif" ? "badge-green" : "badge-red"}">${s}</span></td>
+            <td><button class="btn-sm btn-ghost" style="font-size:10px">Modifier</button></td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 4,
+          title: "Page 04 — Statistiques globales",
+          sub: "Directeur · Performances et analyses",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div><div class="av" style="background:#2563EB">DJ</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item act"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Statistiques académiques</h3>
+      <div style="display:flex;gap:6px">
+        <select class="form-select" style="font-size:11px;padding:4px 8px"><option>Séquence 3</option><option>Trimestre 1</option><option>Année</option></select>
+        <button class="btn-sm btn-ghost">↓ Export PDF</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Distribution des moyennes (classe entière)</h3>
+        <div class="chart-bar-wrap">
+          ${[
+            ["<8", "12", "#DC2626"],
+            ["8-10", "28", "#F97316"],
+            ["10-12", "62", "#EAB308"],
+            ["12-14", "89", "#22C55E"],
+            ["14-16", "97", "#059669"],
+            ["16-20", "59", "#0D2347"],
+          ]
+            .map(
+              ([l, v, c]) =>
+                `<div class="chart-bar-item"><div class="chart-bar" style="height:${Math.round((parseInt(v) / 97) * 76)}px;background:${c}"></div><div class="chart-lbl">${l}</div><div class="chart-lbl" style="font-weight:700;color:#0F172A">${v}</div></div>`,
+            )
+            .join("")}
+        </div>
+        <div style="display:flex;justify-content:space-around;margin-top:12px;font-size:11px">
+          <div style="text-align:center"><div style="font-weight:800;font-size:16px;color:#0D2347">13,4</div><div style="color:#64748B">Moyenne</div></div>
+          <div style="text-align:center"><div style="font-weight:800;font-size:16px;color:#059669">18,5</div><div style="color:#64748B">Max</div></div>
+          <div style="text-align:center"><div style="font-weight:800;font-size:16px;color:#DC2626">5,2</div><div style="color:#64748B">Min</div></div>
+          <div style="text-align:center"><div style="font-weight:800;font-size:16px;color:#2563EB">79%</div><div style="color:#64748B">Réussite</div></div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Taux de réussite par niveau</h3>
+        <table class="m-table" style="font-size:11px">
+          <thead><tr><th>Classe</th><th>Élèves</th><th>Moy.</th><th>> 10</th><th>Réussite</th></tr></thead>
+          <tbody>
+            ${[
+              ["CP", "62", "14,2", "58", "94%", "badge-green"],
+              ["CE1", "58", "13,8", "52", "90%", "badge-green"],
+              ["CE2", "60", "13,1", "48", "80%", "badge-blue"],
+              ["CM1", "55", "14,5", "51", "93%", "badge-green"],
+              ["CM2", "60", "12,9", "44", "73%", "badge-gold"],
+              ["6e", "52", "13,7", "46", "88%", "badge-green"],
+            ]
+              .map(
+                ([c, e, m, r, p, b]) =>
+                  `<tr><td style="font-weight:600">${c}</td><td>${e}</td><td style="font-weight:700">${m}</td><td>${r}</td><td><span class="badge ${b}">${p}</span></td></tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 5,
+          title: "Page 05 — Journal d'audit",
+          sub: "Directeur · Traçabilité complète des actions",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div><div class="av" style="background:#2563EB">DJ</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item act"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Journal d'audit</h3><button class="btn-sm btn-ghost">↓ Export</button></div>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <input class="form-input" placeholder="Rechercher une action..." style="flex:1">
+      <select class="form-select"><option>Toutes les actions</option><option>Modification note</option><option>Verrouillage</option><option>Paiement</option><option>Connexion</option></select>
+      <input class="form-input" type="date" style="width:140px">
+      <select class="form-select"><option>Tous utilisateurs</option></select>
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      <table class="m-table">
+        <thead><tr><th>Date / Heure</th><th>Utilisateur</th><th>Action</th><th>Détail</th><th>Ancienne val.</th><th>Nouvelle val.</th><th>IP</th></tr></thead>
+        <tbody>
+          ${[
+            [
+              "14:32:18",
+              "Nkodo Pierre",
+              "Modification note",
+              "Grade #4521 — Maths CM2-A",
+              "12",
+              "15",
+              "192.168.1.14",
+              "badge-gold",
+            ],
+            [
+              "14:28:05",
+              "Dupont Jean",
+              "Déverrouillage",
+              "Séquence 2 — CM2-A",
+              "locked",
+              "unlocked",
+              "192.168.1.10",
+              "badge-red",
+            ],
+            [
+              "12:15:42",
+              "Fouda Marie",
+              "Paiement enregistré",
+              "Élève: Amougou Paul · 45 000 FCFA",
+              "—",
+              "45000",
+              "192.168.1.22",
+              "badge-green",
+            ],
+            [
+              "11:03:17",
+              "Mballa Claire",
+              "Inscription élève",
+              "Nkeng Alice — CE1-B",
+              "—",
+              "created",
+              "192.168.1.11",
+              "badge-blue",
+            ],
+            [
+              "10:47:55",
+              "Biya Samuel",
+              "Saisie note",
+              "Grade #4488 — Sciences CE2",
+              "—",
+              "16",
+              "192.168.1.18",
+              "badge-blue",
+            ],
+            [
+              "09:12:00",
+              "Dupont Jean",
+              "Connexion",
+              "Authentification réussie",
+              "—",
+              "—",
+              "192.168.1.10",
+              "badge-gray",
+            ],
+          ]
+            .map(
+              ([h, u, a, d, o, n, ip, b]) => `
+          <tr>
+            <td style="font-family:monospace;font-size:10px;color:#64748B">${new Date().toLocaleDateString("fr")}&nbsp;${h}</td>
+            <td style="font-size:11px;font-weight:600">${u}</td>
+            <td><span class="badge ${b}" style="font-size:10px">${a}</span></td>
+            <td style="font-size:11px;color:#334155">${d}</td>
+            <td style="font-family:monospace;font-size:10px;color:#DC2626">${o}</td>
+            <td style="font-family:monospace;font-size:10px;color:#059669">${n}</td>
+            <td style="font-family:monospace;font-size:10px;color:#94A3B8">${ip}</td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 6,
+          title: "Page 06 — Configuration école",
+          sub: "Directeur · Identité visuelle et paramètres",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div><div class="av" style="background:#2563EB">DJ</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item act"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Configuration de l'école</h3><button class="btn-sm btn-primary">💾 Enregistrer</button></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+        <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Identité de l'école</h4>
+        <div class="form-grid">
+          <div class="form-group" style="grid-column:1/-1"><label class="form-label">Nom de l'établissement</label><input class="form-input" value="École Primaire Sainte-Marie"></div>
+          <div class="form-group" style="grid-column:1/-1"><label class="form-label">Devise / Slogan</label><input class="form-input" value="L'excellence au service de l'avenir"></div>
+          <div class="form-group"><label class="form-label">Adresse</label><input class="form-input" value="Yaoundé, Cameroun"></div>
+          <div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" value="+237 699 000 000"></div>
+        </div>
+        <div style="margin-top:12px">
+          <label class="form-label" style="display:block;margin-bottom:6px">Logo de l'école</label>
+          <div style="border:2px dashed #CBD5E1;border-radius:8px;padding:20px;text-align:center;cursor:pointer">
+            <div style="font-size:24px">🏫</div>
+            <div style="font-size:11px;color:#64748B;margin-top:4px">Cliquer pour uploader (PNG, JPG)</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+        <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Apparence des bulletins</h4>
+        <div class="form-group" style="margin-bottom:10px">
+          <label class="form-label">Couleur principale</label>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+            <input type="color" value="#0D2347" style="width:32px;height:32px;border:none;border-radius:4px;cursor:pointer">
+            <input class="form-input" value="#0D2347" style="font-family:monospace;flex:1">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:12px">
+          <label class="form-label">Couleur secondaire</label>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+            <input type="color" value="#D97706" style="width:32px;height:32px;border:none;border-radius:4px;cursor:pointer">
+            <input class="form-input" value="#D97706" style="font-family:monospace;flex:1">
+          </div>
+        </div>
+        <h4 style="font-size:12px;font-weight:700;margin-bottom:8px;color:#0D2347">Aperçu en-tête bulletin</h4>
+        <div style="border:1px solid #E2E8F0;border-radius:8px;padding:12px;background:#F8FAFC">
+          <div style="display:flex;justify-content:space-between;border-bottom:2px solid #0D2347;padding-bottom:8px">
+            <div><div style="font-size:13px;font-weight:800;color:#0D2347">École Primaire Sainte-Marie</div>
+            <div style="font-size:10px;color:#64748B">L'excellence au service de l'avenir</div>
+            <div style="font-size:10px;color:#64748B">Yaoundé, Cameroun</div></div>
+            <div style="text-align:right;font-size:10px;color:#64748B">
+              <div style="font-weight:700;color:#D97706">BULLETIN DE NOTES</div>
+              <div>Année 2025-2026</div>
+              <div>Séquence 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 7,
+          title: "Page 07 — Dashboard Secrétaire",
+          sub: "Secrétaire · Gestion administrative",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item act"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div style="margin-bottom:14px"><div style="font-size:15px;font-weight:800;color:#0D2347">Bonjour, Mballa Claire 👋</div>
+    <div style="font-size:12px;color:#64748B">Mercredi 18 Mars 2026 · École Primaire Sainte-Marie</div></div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val" style="color:#059669">347</div><div class="kpi-lbl">Élèves inscrits</div><div class="kpi-chg" style="color:#059669">+3 ce mois</div></div>
+      <div class="kpi-card"><div class="kpi-val">18</div><div class="kpi-lbl">Classes</div><div class="kpi-chg" style="color:#64748B">Toutes configurées</div></div>
+      <div class="kpi-card"><div class="kpi-val" style="color:#DC2626">4</div><div class="kpi-lbl">Sans affectation</div><div class="kpi-chg" style="color:#DC2626">À traiter</div></div>
+      <div class="kpi-card"><div class="kpi-val">24</div><div class="kpi-lbl">Enseignants</div><div class="kpi-chg" style="color:#64748B">Tous affectés</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Inscriptions récentes</h3><button class="btn-sm btn-green">+ Inscrire</button></div>
+        ${[
+          ["Amougou Paul", "CE2-A", "12/03", "Actif"],
+          ["Nkeng Alice", "CE1-B", "11/03", "Actif"],
+          ["Bele Marc", "CM1-A", "10/03", "Actif"],
+          ["Essama Lea", "CP-B", "09/03", "Actif"],
+        ]
+          .map(
+            ([n, c, d, s]) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#15803D">${n
+                .split(" ")
+                .map((w) => w[0])
+                .join("")}</div>
+              <div><div style="font-size:12px;font-weight:600">${n}</div><div style="font-size:11px;color:#64748B">${c}</div></div>
+            </div>
+            <div style="text-align:right"><div style="font-size:10px;color:#64748B">${d}</div><span class="badge badge-green">${s}</span></div>
+          </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>État des classes</h3></div>
+        ${[
+          ["CP-A", "28/30", "93%"],
+          ["CP-B", "26/30", "87%"],
+          ["CE1-A", "30/30", "100%"],
+          ["CE2-A", "29/30", "97%"],
+          ["CM2-B", "22/30", "73%"],
+        ]
+          .map(
+            ([c, e, p]) => `
+          <div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px">
+              <span style="font-weight:600">${c}</span><span style="color:#64748B">${e} élèves</span>
+            </div>
+            <div class="stat-bar"><div class="stat-fill" style="width:${p};background:${parseInt(p) > 90 ? "#059669" : parseInt(p) > 70 ? "#D97706" : "#DC2626"}"></div></div>
+          </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 8,
+          title: "Page 08 — Liste des élèves",
+          sub: "Secrétaire · Recherche et filtres",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Liste des élèves <span style="color:#64748B;font-weight:400">(347)</span></h3>
+      <div style="display:flex;gap:6px"><button class="btn-sm btn-ghost">↓ Export</button><button class="btn-sm btn-green">+ Inscrire</button></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <input class="form-input" placeholder="🔍  Nom, prénom ou matricule..." style="flex:1">
+      <select class="form-select"><option>Toutes les classes</option><option>CP-A</option><option>CE1-B</option><option>CM2-A</option></select>
+      <select class="form-select"><option>Tous les statuts</option><option>Actif</option><option>Transféré</option></select>
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      <table class="m-table">
+        <thead><tr><th>Photo</th><th>Matricule</th><th>Nom complet</th><th>Classe</th><th>Date naiss.</th><th>Tuteur</th><th>Statut</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${[
+            [
+              "AM",
+              "2026-CE2-001",
+              "Amougou Paul",
+              "CE2-A",
+              "12/05/2015",
+              "Amougou Jean",
+              "Actif",
+            ],
+            [
+              "NA",
+              "2026-CE1-014",
+              "Nkeng Alice",
+              "CE1-B",
+              "03/08/2016",
+              "Nkeng Rose",
+              "Actif",
+            ],
+            [
+              "BM",
+              "2026-CM1-007",
+              "Bele Marc",
+              "CM1-A",
+              "27/11/2014",
+              "Bele Pierre",
+              "Actif",
+            ],
+            [
+              "EL",
+              "2026-CP-023",
+              "Essama Lea",
+              "CP-B",
+              "15/01/2018",
+              "Essama Marie",
+              "Actif",
+            ],
+            [
+              "FJ",
+              "2026-CM2-004",
+              "Fouda Jules",
+              "CM2-A",
+              "08/03/2013",
+              "Fouda Anne",
+              "Actif",
+            ],
+            [
+              "NP",
+              "2025-CE2-019",
+              "Ngono Paul",
+              "CE2-B",
+              "20/07/2015",
+              "—",
+              "Transféré",
+            ],
+          ]
+            .map(
+              ([av, mat, n, c, d, t, s]) => `
+          <tr>
+            <td><div style="width:28px;height:28px;border-radius:50%;background:#${s === "Actif" ? "DCFCE7" : "F1F5F9"};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#${s === "Actif" ? "15803D" : "64748B"}">${av}</div></td>
+            <td style="font-family:monospace;font-size:10px;color:#64748B">${mat}</td>
+            <td style="font-weight:600;font-size:12px">${n}</td>
+            <td><span class="badge badge-blue">${c}</span></td>
+            <td style="font-size:11px">${d}</td>
+            <td style="font-size:11px;color:#64748B">${t}</td>
+            <td><span class="badge ${s === "Actif" ? "badge-green" : "badge-gray"}">${s}</span></td>
+            <td style="display:flex;gap:4px"><button class="btn-sm btn-ghost" style="font-size:10px">Voir</button><button class="btn-sm btn-ghost" style="font-size:10px">Modifier</button></td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+      <div style="padding:10px 14px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748B">
+        <span>Affichage 1-6 sur 347 élèves</span>
+        <div style="display:flex;gap:4px">
+          <button class="btn-sm btn-ghost" style="font-size:10px">← Préc</button>
+          <button class="btn-sm btn-primary" style="font-size:10px">1</button>
+          <button class="btn-sm btn-ghost" style="font-size:10px">2</button>
+          <button class="btn-sm btn-ghost" style="font-size:10px">3</button>
+          <button class="btn-sm btn-ghost" style="font-size:10px">Suiv →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 9,
+          title: "Page 09 — Fiche élève",
+          sub: "Secrétaire · Dossier complet 360°",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:14px">
+      <a style="font-size:12px;color:#2563EB;cursor:pointer">← Élèves</a>
+      <span style="color:#CBD5E1">/</span>
+      <span style="font-size:12px;font-weight:600">Amougou Paul</span>
+    </div>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px;text-align:center">
+          <div style="width:64px;height:64px;border-radius:50%;background:#DCFCE7;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#15803D">AP</div>
+          <div style="font-size:14px;font-weight:800;color:#0D2347">Amougou Paul</div>
+          <div style="font-size:11px;color:#64748B;margin-top:2px">2026-CE2-001</div>
+          <span class="badge badge-green" style="margin-top:6px">Actif</span>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-direction:column">
+            <button class="btn-sm btn-primary" style="justify-content:center">📄 Imprimer bulletin</button>
+            <button class="btn-sm btn-ghost" style="justify-content:center">✏️ Modifier</button>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:8px;color:#0D2347">Informations</h4>
+          ${[
+            ["Classe", "CE2-A"],
+            ["Niveau", "Cours Élémentaire 2"],
+            ["Date naiss.", "12/05/2015"],
+            ["Lieu naiss.", "Yaoundé"],
+            ["Sexe", "Masculin"],
+          ]
+            .map(
+              ([l, v]) =>
+                `<div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #F8FAFC">
+              <span style="color:#64748B">${l}</span><span style="font-weight:600">${v}</span></div>`,
+            )
+            .join("")}
+        </div>
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:8px;color:#0D2347">Tuteur</h4>
+          ${[
+            ["Nom", "Amougou Jean"],
+            ["Lien", "Père"],
+            ["Tél.", "+237 699 000 000"],
+          ]
+            .map(
+              ([l, v]) =>
+                `<div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0">
+              <span style="color:#64748B">${l}</span><span style="font-weight:600">${v}</span></div>`,
+            )
+            .join("")}
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:10px;color:#0D2347">Résultats — Séquence 3</h4>
+          <table class="m-table" style="font-size:11px">
+            <thead><tr><th>Matière</th><th>Note</th><th>Coef</th><th>Total</th><th>Rang mat.</th><th>Appréciation</th></tr></thead>
+            <tbody>
+              ${[
+                ["Mathématiques", "15", "4", "60", "2e", "Très Bien"],
+                ["Français", "13", "4", "52", "5e", "Bien"],
+                ["Sciences", "17", "2", "34", "1er", "Excellent"],
+                ["Hist-Géo", "12", "2", "24", "7e", "Passable"],
+                ["EPS", "18", "1", "18", "1er", "Excellent"],
+              ]
+                .map(
+                  ([m, n, c, t, r, a]) => `
+              <tr><td style="font-weight:500">${m}</td>
+              <td style="font-weight:700;color:${parseInt(n) >= 14 ? "#059669" : parseInt(n) >= 10 ? "#D97706" : "#DC2626"}">${n}/20</td>
+              <td style="color:#64748B">${c}</td><td style="font-weight:600">${t}</td>
+              <td style="font-family:monospace;font-size:10px">${r}</td>
+              <td><span class="badge ${a === "Excellent" || a === "Très Bien" ? "badge-green" : a === "Bien" ? "badge-blue" : a === "Passable" ? "badge-gold" : "badge-red"}">${a}</span></td></tr>`,
+                )
+                .join("")}
+              <tr style="background:#F8FAFC"><td colspan="3" style="font-weight:700">MOYENNE GÉNÉRALE</td><td colspan="2" style="font-weight:800;font-size:13px;color:#0D2347">14,46 / 20</td><td><span class="badge badge-green">Rang 3e / 28</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 10,
+          title: "Page 10 — Inscrire un élève",
+          sub: "Secrétaire · Formulaire d'inscription complet",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:14px">
+      <a style="font-size:12px;color:#2563EB;cursor:pointer">← Élèves</a>
+      <span style="color:#CBD5E1">/</span><span style="font-size:12px;font-weight:600">Nouvelle inscription</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 280px;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Informations de l'élève</h4>
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">Prénom *</label><input class="form-input" placeholder="Paul"></div>
+            <div class="form-group"><label class="form-label">Nom de famille *</label><input class="form-input" placeholder="Amougou"></div>
+            <div class="form-group"><label class="form-label">Date de naissance *</label><input class="form-input" type="date"></div>
+            <div class="form-group"><label class="form-label">Lieu de naissance</label><input class="form-input" placeholder="Yaoundé"></div>
+            <div class="form-group"><label class="form-label">Sexe *</label><select class="form-select"><option>Sélectionner</option><option>Masculin</option><option>Féminin</option></select></div>
+            <div class="form-group"><label class="form-label">Affectation à la classe *</label><select class="form-select"><option>Sélectionner une classe</option><option>CP-A</option><option>CE1-B</option><option>CM2-A</option></select></div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Informations du tuteur</h4>
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">Nom du tuteur *</label><input class="form-input" placeholder="Amougou Jean"></div>
+            <div class="form-group"><label class="form-label">Lien de parenté *</label><select class="form-select"><option>Père</option><option>Mère</option><option>Tuteur légal</option></select></div>
+            <div class="form-group"><label class="form-label">Téléphone *</label><input class="form-input" placeholder="+237 6XX XXX XXX"></div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="tuteur@email.cm"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:10px;color:#0D2347">Photo de l'élève</h4>
+          <div style="border:2px dashed #CBD5E1;border-radius:8px;padding:24px;text-align:center;cursor:pointer">
+            <div style="font-size:28px">📷</div>
+            <div style="font-size:11px;color:#64748B;margin-top:6px">Cliquer pour uploader</div>
+            <div style="font-size:10px;color:#94A3B8;margin-top:2px">PNG, JPG — max 2MB</div>
+          </div>
+        </div>
+        <div style="background:#FEF3C7;border:1px solid #FDE68A;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:8px;color:#92400E">Matricule</h4>
+          <div style="font-family:monospace;font-size:13px;font-weight:700;color:#0D2347;background:#fff;border-radius:6px;padding:8px;text-align:center">2026-???-AUTO</div>
+          <div style="font-size:10px;color:#78350F;margin-top:6px">Généré automatiquement après validation</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn-sm btn-green" style="justify-content:center;padding:10px;font-size:12px">✓ Confirmer l'inscription</button>
+          <button class="btn-sm btn-ghost" style="justify-content:center">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 11,
+          title: "Page 11 — Liste des classes",
+          sub: "Secrétaire · Organisation des classes",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item act"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Classes — Année 2025-2026</h3><button class="btn-sm btn-green">+ Créer une classe</button></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      ${[
+        ["CP-A", "CP", "28/30", "M. Nkomo", "#DBEAFE", "#1D4ED8"],
+        ["CP-B", "CP", "26/30", "Mme Abena", "#DBEAFE", "#1D4ED8"],
+        ["CE1-A", "CE1", "30/30", "M. Fouda", "#DCFCE7", "#15803D"],
+        ["CE1-B", "CE1", "28/30", "Mme Talla", "#DCFCE7", "#15803D"],
+        ["CE2-A", "CE2", "29/30", "M. Biya", "#F5F3FF", "#6D28D9"],
+        ["CE2-B", "CE2", "27/30", "Mme Ndi", "#F5F3FF", "#6D28D9"],
+        ["CM1-A", "CM1", "25/30", "M. Essono", "#FEF3C7", "#92400E"],
+        ["CM1-B", "CM1", "30/30", "Mme Akono", "#FEF3C7", "#92400E"],
+        ["CM2-A", "CM2", "28/30", "M. Mvondo", "#FEE2E2", "#B91C1C"],
+        ["CM2-B", "CM2", "22/30", "Mme Ngono", "#FEE2E2", "#B91C1C"],
+      ]
+        .map(([n, lvl, e, t, bg, tc]) => {
+          const [cur, max] = e.split("/").map(Number);
+          const pct = Math.round((cur / max) * 100);
+          return `<div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px;cursor:pointer" onclick="">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+              <div>
+                <div style="font-size:15px;font-weight:800;color:#0D2347">${n}</div>
+                <div style="font-size:11px;color:#64748B">${lvl}</div>
+              </div>
+              <span class="badge" style="background:${bg};color:${tc}">${pct}% plein</span>
+            </div>
+            <div style="font-size:11px;color:#64748B;margin-bottom:6px">👨‍🏫 ${t}</div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">
+              <span>${cur} élèves</span><span style="color:#64748B">max ${max}</span>
+            </div>
+            <div class="stat-bar"><div class="stat-fill" style="width:${pct}%;background:${pct >= 90 ? "#DC2626" : pct >= 70 ? "#D97706" : "#059669"}"></div></div>
+            <div style="display:flex;gap:6px;margin-top:10px">
+              <button class="btn-sm btn-ghost" style="flex:1;justify-content:center;font-size:10px">Voir</button>
+              <button class="btn-sm btn-ghost" style="flex:1;justify-content:center;font-size:10px">Modifier</button>
+            </div>
+          </div>`;
+        })
+        .join("")}
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 12,
+          title: "Page 12 — Détail classe",
+          sub: "Secrétaire · Matières, coefficients et élèves",
+          role: "Secrétaire",
+          roleColor: "#DCFCE7",
+          roleTxt: "#15803D",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Mballa Claire</div><div class="urole">Secrétaire</div></div><div class="av" style="background:#059669">MC</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👧</span>Élèves</div>
+    <div class="m-nav-item act"><span class="ico">🏫</span>Classes</div>
+    <div class="m-nav-item"><span class="ico">📚</span>Matières</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:14px">
+      <a style="font-size:12px;color:#2563EB;cursor:pointer">← Classes</a>
+      <span style="color:#CBD5E1">/</span><span style="font-size:12px;font-weight:600">CE2-A</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Matières & Coefficients</h3><button class="btn-sm btn-green">+ Matière</button></div>
+        <table class="m-table" style="font-size:11px">
+          <thead><tr><th>Matière</th><th>Abrév.</th><th>Coef.</th><th>Enseignant</th><th></th></tr></thead>
+          <tbody>
+            ${[
+              ["Mathématiques", "MATH", "4", "M. Biya"],
+              ["Français", "FR", "4", "Mme Talla"],
+              ["Sciences de la Vie", "SN", "2", "M. Nkomo"],
+              ["Histoire-Géographie", "HG", "2", "M. Biya"],
+              ["Éducation Physique", "EPS", "1", "M. Essono"],
+              ["Arts Plastiques", "ART", "1", "Mme Ndi"],
+            ]
+              .map(
+                ([n, a, c, e]) => `
+            <tr><td style="font-weight:500">${n}</td><td style="font-family:monospace;font-size:10px;background:#F1F5F9;border-radius:4px;padding:2px 6px">${a}</td>
+            <td><span class="badge badge-blue">${c}</span></td><td style="font-size:11px;color:#64748B">${e}</td>
+            <td><button class="btn-sm btn-ghost" style="font-size:9px;padding:2px 6px">✏️</button></td></tr>`,
+              )
+              .join("")}
+            <tr style="background:#F0FDF4"><td colspan="2" style="font-weight:700;font-size:11px">Total coefficients</td><td colspan="3" style="font-weight:800;font-size:13px;color:#0D2347">14</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Élèves de la classe (29/30)</h3></div>
+        <div style="max-height:260px;overflow-y:auto">
+          ${[
+            "Amougou Paul",
+            "Nkeng Alice",
+            "Bele Marc",
+            "Fouda Jules",
+            "Essama Lea",
+            "Moto Paul",
+            "Ngono Sarah",
+            "Akoa Jean",
+            "Buma Rose",
+            "Tabi Luc",
+          ]
+            .map(
+              (n, i) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #F8FAFC">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:24px;height:24px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#15803D">${n
+                .split(" ")
+                .map((w) => w[0])
+                .join("")}</div>
+              <span style="font-size:12px;font-weight:500">${n}</span>
+            </div>
+            <span class="badge badge-gray" style="font-size:9px">${i + 1}/${29}</span>
+          </div>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 13,
+          title: "Page 13 — Dashboard Enseignant",
+          sub: "Enseignant · Mes classes et alertes",
+          role: "Enseignant",
+          roleColor: "#F5F3FF",
+          roleTxt: "#6D28D9",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item act"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Mes classes</div>
+    <div class="m-nav-item"><span class="ico">📝</span>Saisie notes</div>
+    <div class="m-nav-item"><span class="ico">📄</span>Bulletins</div>
+  </div>
+  <div class="m-content">
+    <div style="margin-bottom:14px"><div style="font-size:15px;font-weight:800;color:#0D2347">Bonjour, M. Nkodo 👋</div>
+    <div style="font-size:12px;color:#64748B">Séquence 3 · Clôture dans 5 jours</div></div>
+    <div class="alert alert-red">🔴 <strong>Mathématiques CE2-A</strong> : notes non encore saisies — clôture dans <strong>5 jours</strong></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div class="kpi-card"><div class="kpi-val" style="color:#7C3AED">3</div><div class="kpi-lbl">Classes affectées</div></div>
+      <div class="kpi-card"><div class="kpi-val" style="color:#059669">2/3</div><div class="kpi-lbl">Notes saisies Séq.3</div></div>
+      <div class="kpi-card"><div class="kpi-val" style="color:#D97706">87</div><div class="kpi-lbl">Élèves au total</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Mes classes — Séq. 3</h3>
+        ${[
+          ["CE2-A", "29 élèves", "Mathématiques", "Terminée", "badge-green"],
+          ["CE2-B", "27 élèves", "Mathématiques", "Terminée", "badge-green"],
+          ["CM1-A", "25 élèves", "Sciences", "⚠️ Manquant", "badge-red"],
+        ]
+          .map(
+            ([c, e, m, s, b]) => `
+          <div style="border:1px solid #E2E8F0;border-radius:8px;padding:10px;margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-weight:700;font-size:12px">${c}</span>
+              <span class="badge ${b}">${s}</span>
+            </div>
+            <div style="font-size:11px;color:#64748B">${e} · ${m}</div>
+            <button class="btn-sm btn-ghost" style="margin-top:8px;font-size:10px">Saisir les notes →</button>
+          </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Top 5 — CE2-A · Séq. 2</h3>
+        ${[
+          ["1er", "Amougou Paul", "14,46", "🏆"],
+          ["2e", "Fouda Jules", "14,08", ""],
+          ["3e", "Nkeng Alice", "13,92", ""],
+          ["4e", "Bele Marc", "13,54", ""],
+          ["5e", "Moto Paul", "13,23", ""],
+        ]
+          .map(
+            ([r, n, m, ic]) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #F8FAFC">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-family:monospace;font-size:10px;font-weight:700;color:#64748B;width:24px">${r}</span>
+              <span style="font-size:12px">${ic} ${n}</span>
+            </div>
+            <span style="font-weight:700;color:#059669;font-size:12px">${m}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 14,
+          title: "Page 14 — Mes classes",
+          sub: "Enseignant · Vue détaillée des classes",
+          role: "Enseignant",
+          roleColor: "#F5F3FF",
+          roleTxt: "#6D28D9",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">🏫</span>Mes classes</div>
+    <div class="m-nav-item"><span class="ico">📝</span>Saisie notes</div>
+    <div class="m-nav-item"><span class="ico">📄</span>Bulletins</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Mes classes affectées</h3></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      ${[
+        [
+          "CE2-A",
+          "Cours Élémentaire 2",
+          "Mathématiques",
+          "29 élèves",
+          "13,4",
+          "Séq.3 ouverte",
+          "#7C3AED",
+          "#F5F3FF",
+        ],
+        [
+          "CE2-B",
+          "Cours Élémentaire 2",
+          "Mathématiques",
+          "27 élèves",
+          "13,1",
+          "Séq.3 ouverte",
+          "#7C3AED",
+          "#F5F3FF",
+        ],
+        [
+          "CM1-A",
+          "Cours Moyen 1",
+          "Sciences de la Vie",
+          "25 élèves",
+          "14,2",
+          "Séq.3 — manquant",
+          "#DC2626",
+          "#FEF2F2",
+        ],
+      ]
+        .map(
+          ([n, lvl, mat, e, m, s, c, bg]) => `
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+          <div style="border-left:3px solid ${c};padding-left:10px;margin-bottom:12px">
+            <div style="font-size:16px;font-weight:800;color:#0D2347">${n}</div>
+            <div style="font-size:11px;color:#64748B">${lvl}</div>
+          </div>
+          <div style="background:${bg};border-radius:6px;padding:8px;margin-bottom:10px">
+            <div style="font-size:11px;font-weight:600;color:${c}">📚 ${mat}</div>
+            <div style="font-size:11px;color:#64748B;margin-top:2px">${e}</div>
+          </div>
+          ${[
+            ["Moy. Séq.2", m + "/20"],
+            ["Statut", s],
+          ]
+            .map(
+              ([l, v]) =>
+                `<div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #F8FAFC">
+              <span style="color:#64748B">${l}</span><span style="font-weight:600">${v}</span></div>`,
+            )
+            .join("")}
+          <div style="display:flex;gap:6px;margin-top:12px">
+            <button class="btn-sm" style="flex:1;justify-content:center;background:#7C3AED;color:#fff;font-size:10px">📝 Notes</button>
+            <button class="btn-sm btn-ghost" style="flex:1;justify-content:center;font-size:10px">📄 Bulletins</button>
+          </div>
+        </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 15,
+          title: "Page 15 — Saisie des notes",
+          sub: "Enseignant · Tableau de saisie interactif",
+          role: "Enseignant",
+          roleColor: "#F5F3FF",
+          roleTxt: "#6D28D9",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Mes classes</div>
+    <div class="m-nav-item act"><span class="ico">📝</span>Saisie notes</div>
+    <div class="m-nav-item"><span class="ico">📄</span>Bulletins</div>
+  </div>
+  <div class="m-content" style="padding:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;gap:8px;align-items:center">
+        <select class="form-select" style="font-size:11px"><option>CE2-A</option></select>
+        <select class="form-select" style="font-size:11px"><option>Séquence 3 — Trimestre 2</option></select>
+      </div>
+      <div style="display:flex;gap:6px">
+        <div style="font-size:11px;color:#64748B;display:flex;align-items:center;gap:4px">
+          <span style="width:10px;height:10px;background:#DCFCE7;border-radius:2px;display:inline-block"></span>≥14
+          <span style="width:10px;height:10px;background:#FEF9C3;border-radius:2px;display:inline-block;margin-left:4px"></span>10-14
+          <span style="width:10px;height:10px;background:#FEE2E2;border-radius:2px;display:inline-block;margin-left:4px"></span>&lt;10
+        </div>
+        <button class="btn-sm btn-ghost">💾 Sauvegarde auto</button>
+        <button class="btn-sm" style="background:#7C3AED;color:#fff">✓ Soumettre</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto;background:#fff;border:1px solid #E2E8F0;border-radius:10px">
+      <table class="notes-grid">
+        <thead>
+          <tr>
+            <th style="text-align:left;min-width:130px">Élève</th>
+            <th>MATH (4)</th><th>FR (4)</th><th>SN (2)</th><th>HG (2)</th><th>EPS (1)</th>
+            <th style="background:#1a3a6b">Moy. /20</th><th style="background:#1a3a6b">Rang</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${[
+            ["Amougou Paul", [15, 13, 17, 12, 18], "14,46", "3e"],
+            ["Nkeng Alice", [13, 16, 14, 15, 17], "14,15", "4e"],
+            ["Bele Marc", [12, 14, 15, 11, 16], "13,23", "6e"],
+            ["Fouda Jules", [16, 15, 13, 14, 18], "14,85", "2e"],
+            ["Moto Paul", [11, 12, 10, 13, 15], "11,79", "8e"],
+            ["Essama Lea", [18, 17, 16, 15, 19], "17,00", "1e"],
+          ]
+            .map(
+              ([n, notes, moy, rg]) => `
+          <tr>
+            <td class="eleve-name">${n}</td>
+            ${notes.map((v) => `<td><input class="note-input ${v >= 14 ? "note-high" : v >= 10 ? "note-mid" : "note-low"}" value="${v}"></td>`).join("")}
+            <td style="font-weight:800;color:#0D2347;background:#F0F7FF">${moy}</td>
+            <td style="font-weight:700;color:#2563EB;background:#F0F7FF;font-family:monospace;font-size:11px">${rg}</td>
+          </tr>`,
+            )
+            .join("")}
+          <tr style="background:#F8FAFC">
+            <td style="font-weight:700;font-size:11px">Moy. classe</td>
+            <td style="font-weight:600;font-size:11px;color:#2563EB">14,2</td>
+            <td style="font-weight:600;font-size:11px;color:#2563EB">14,5</td>
+            <td style="font-weight:600;font-size:11px;color:#2563EB">14,2</td>
+            <td style="font-weight:600;font-size:11px;color:#2563EB">13,3</td>
+            <td style="font-weight:600;font-size:11px;color:#2563EB">17,2</td>
+            <td style="font-weight:800;color:#059669;background:#F0FDF4">14,42</td>
+            <td style="background:#F0FDF4">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 16,
+          title: "Page 16 — Aperçu bulletin",
+          sub: "Enseignant · Bulletin individuel avant impression",
+          role: "Enseignant",
+          roleColor: "#F5F3FF",
+          roleTxt: "#6D28D9",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Mes classes</div>
+    <div class="m-nav-item"><span class="ico">📝</span>Saisie notes</div>
+    <div class="m-nav-item act"><span class="ico">📄</span>Bulletins</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h3 style="font-size:13px;font-weight:700">Aperçu — Amougou Paul · CE2-A · Séquence 3</h3>
+      <div style="display:flex;gap:6px">
+        <button class="btn-sm btn-ghost">↓ Télécharger PDF</button>
+        <button class="btn-sm" style="background:#7C3AED;color:#fff">🖨️ Imprimer</button>
+      </div>
+    </div>
+    <div style="max-width:580px;margin:0 auto">
+      <div class="bulletin">
+        <div class="bull-hdr">
+          <div>
+            <div class="bull-school">École Primaire Sainte-Marie</div>
+            <div style="font-size:10px;color:#64748B">L'excellence au service de l'avenir · Yaoundé</div>
+          </div>
+          <div style="text-align:right;font-size:10px">
+            <div style="font-weight:700;color:#D97706;font-size:11px">BULLETIN DE NOTES</div>
+            <div>Année 2025-2026</div>
+            <div>Séquence 3 — Trimestre 2</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px;font-size:10px">
+          <div><strong>Élève :</strong> Amougou Paul<br><strong>Classe :</strong> CE2-A<br><strong>Matricule :</strong> 2026-CE2-001</div>
+          <div><strong>Date naiss. :</strong> 12/05/2015<br><strong>Sexe :</strong> Masculin<br><strong>Enseignant :</strong> M. Nkodo Pierre</div>
+        </div>
+        <table class="bull-table">
+          <thead><tr><th>Matière</th><th>Coef</th><th>Note</th><th>Total</th><th>Moy.cl.</th><th>Rang</th><th>Appréciation</th></tr></thead>
+          <tbody>
+            ${[
+              ["Mathématiques", "4", "15", "60", "14,2", "3e", "Très Bien"],
+              ["Français", "4", "13", "52", "14,5", "8e", "Bien"],
+              ["Sciences", "2", "17", "34", "14,2", "1er", "Excellent"],
+              ["Hist-Géo", "2", "12", "24", "13,3", "7e", "Passable"],
+              ["EPS", "1", "18", "18", "17,2", "2e", "Excellent"],
+            ]
+              .map(
+                ([m, c, n, t, mc, r, a]) => `
+            <tr><td>${m}</td><td style="text-align:center">${c}</td>
+            <td style="text-align:center;font-weight:700;color:${parseInt(n) >= 14 ? "#059669" : parseInt(n) >= 10 ? "#D97706" : "#DC2626"}">${n}/20</td>
+            <td style="text-align:center">${t}</td><td style="text-align:center;color:#64748B">${mc}</td>
+            <td style="text-align:center;font-weight:600">${r}</td><td>${a}</td></tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;font-size:10px">
+          <div style="background:#F0F7FF;border-radius:4px;padding:6px;text-align:center">
+            <div style="font-size:14px;font-weight:800;color:#0D2347">14,46</div>
+            <div style="color:#64748B">Moyenne /20</div>
+          </div>
+          <div style="background:#F0FDF4;border-radius:4px;padding:6px;text-align:center">
+            <div style="font-size:14px;font-weight:800;color:#059669">3e / 29</div>
+            <div style="color:#64748B">Rang classe</div>
+          </div>
+          <div style="background:#FFFBEB;border-radius:4px;padding:6px;text-align:center">
+            <div style="font-size:12px;font-weight:700;color:#D97706">Très Bien</div>
+            <div style="color:#64748B">Appréciation</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;display:flex;justify-content:space-between">
+          <div><strong>Décision :</strong> <span style="color:#059669;font-weight:700">Admis en classe supérieure</span></div>
+          <div><strong>Stats classe :</strong> Moy.14,42 · Max.17 · Min.8,5</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;font-size:10px;border-top:1px solid #ddd;padding-top:8px">
+          <div><div style="font-weight:600;margin-bottom:20px">Le Directeur :</div><div style="border-top:1px solid #999;padding-top:4px;color:#64748B">Signature et cachet</div></div>
+          <div><div style="font-weight:600;margin-bottom:20px">L'Enseignant principal :</div><div style="border-top:1px solid #999;padding-top:4px;color:#64748B">M. Nkodo Pierre</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 17,
+          title: "Page 17 — Impression en masse",
+          sub: "Enseignant · Génération PDF toute la classe",
+          role: "Enseignant",
+          roleColor: "#F5F3FF",
+          roleTxt: "#6D28D9",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">🏫</span>Mes classes</div>
+    <div class="m-nav-item"><span class="ico">📝</span>Saisie notes</div>
+    <div class="m-nav-item act"><span class="ico">📄</span>Bulletins</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Génération en masse — CE2-A</h3></div>
+    <div style="display:grid;grid-template-columns:1fr 280px;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+        <div style="display:flex;gap:10px;margin-bottom:14px">
+          <select class="form-select"><option>Séquence 3</option><option>Trimestre 1</option><option>Année</option></select>
+          <select class="form-select"><option>Ordre alphabétique</option><option>Par rang</option></select>
+          <button class="btn-sm" style="background:#7C3AED;color:#fff">⚡ Générer PDF (29)</button>
+        </div>
+        <div class="alert alert-blue">ℹ️ <span>Les bulletins seront générés en un seul PDF de <strong>29 pages</strong>. Chaque élève = 1 page.</span></div>
+        <table class="m-table" style="font-size:11px">
+          <thead><tr><th><input type="checkbox" checked></th><th>Élève</th><th>Rang</th><th>Moyenne</th><th>Décision</th><th>État</th></tr></thead>
+          <tbody>
+            ${[
+              ["Essama Lea", "1er", "17,00", "Admise", "badge-green"],
+              ["Fouda Jules", "2e", "14,85", "Admis", "badge-green"],
+              ["Amougou Paul", "3e", "14,46", "Admis", "badge-green"],
+              ["Nkeng Alice", "4e", "14,15", "Admise", "badge-green"],
+              ["Bele Marc", "5e", "13,23", "Admis", "badge-green"],
+              ["Moto Paul", "6e", "11,79", "Admis", "badge-blue"],
+              ["Ngono Sarah", "7e", "10,42", "Admise", "badge-blue"],
+              ["Tabi Paul", "8e", "9,85", "Redoublant", "badge-red"],
+            ]
+              .map(
+                ([n, r, m, d, b]) => `
+            <tr><td style="text-align:center"><input type="checkbox" checked></td>
+            <td style="font-weight:600">${n}</td>
+            <td style="font-family:monospace;font-size:10px">${r}</td>
+            <td style="font-weight:700;color:${parseFloat(m) >= 14 ? "#059669" : parseFloat(m) >= 10 ? "#D97706" : "#DC2626"}">${m}</td>
+            <td><span class="badge ${b}">${d}</span></td>
+            <td style="font-size:10px;color:#059669">✓ Prêt</td></tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:10px;padding:14px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:10px;color:#5B21B6">Résumé génération</h4>
+          ${[
+            ["Élèves sélectionnés", "29"],
+            ["Pages PDF", "29"],
+            ["Format", "A4"],
+            ["Orientation", "Portrait"],
+            ["Durée estimée", "~45 sec"],
+          ]
+            .map(
+              ([l, v]) =>
+                `<div style="display:flex;justify-content:space-between;font-size:11px;padding:5px 0;border-bottom:1px solid #EDE9FE">
+              <span style="color:#64748B">${l}</span><span style="font-weight:700">${v}</span></div>`,
+            )
+            .join("")}
+        </div>
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:10px;color:#0D2347">Téléchargements</h4>
+          ${[
+            ["PDF complet (29 p.)", "CE2A_Seq3_Bulletins.pdf"],
+            ["PDF individuel", "Par élève à la demande"],
+          ]
+            .map(
+              ([l, f]) =>
+                `<button class="btn-sm btn-ghost" style="width:100%;justify-content:center;margin-bottom:6px;font-size:10px">↓ ${l}</button>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 18,
+          title: "Page 18 — Dashboard Économe",
+          sub: "Économe · Vue financière complète",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item act"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div style="margin-bottom:14px"><div style="font-size:15px;font-weight:800;color:#0D2347">Bonjour, Fouda Marie 💰</div>
+    <div style="font-size:12px;color:#64748B">Mercredi 18 Mars 2026 · Trimestre 2</div></div>
+    <div class="alert alert-gold">⚠️ <span><strong>47 élèves</strong> ont une dette supérieure à <strong>50 000 FCFA</strong> — action requise</span></div>
+    <div class="kpi-grid">
+      <div class="kpi-card" style="border-left:3px solid #059669"><div class="kpi-val" style="color:#059669">8,4M</div><div class="kpi-lbl">Encaissé (FCFA)</div><div class="kpi-chg" style="color:#059669">↑ +1,2M ce mois</div></div>
+      <div class="kpi-card" style="border-left:3px solid #D97706"><div class="kpi-val" style="color:#D97706">10,8M</div><div class="kpi-lbl">Total attendu (FCFA)</div><div class="kpi-chg" style="color:#64748B">Année complète</div></div>
+      <div class="kpi-card" style="border-left:3px solid #DC2626"><div class="kpi-val" style="color:#DC2626">2,4M</div><div class="kpi-lbl">Reste à encaisser</div><div class="kpi-chg" style="color:#DC2626">47 élèves concernés</div></div>
+      <div class="kpi-card" style="border-left:3px solid #2563EB"><div class="kpi-val" style="color:#2563EB">78%</div><div class="kpi-lbl">Taux recouvrement</div><div class="kpi-chg" style="color:#DC2626">Objectif 90%</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Encaissements par mois</h3></div>
+        <div class="chart-bar-wrap" style="height:90px">
+          ${[
+            ["Sep", "620"],
+            ["Oct", "980"],
+            ["Nov", "890"],
+            ["Déc", "450"],
+            ["Jan", "1100"],
+            ["Fév", "1340"],
+            ["Mar", "980"],
+          ]
+            .map(([m, v]) => {
+              const max = 1340;
+              const pct = Math.round((parseInt(v) / max) * 86);
+              return `<div class="chart-bar-item"><div class="chart-bar" style="height:${pct}px;background:#D97706;opacity:${m === "Mar" ? 1 : 0.6}"></div><div class="chart-lbl">${m}</div><div class="chart-lbl" style="font-weight:600;color:#92400E">${Math.round((parseInt(v) / 1000) * 10) / 10}k</div></div>`;
+            })
+            .join("")}
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <div class="section-hdr"><h3>Derniers paiements</h3><button class="btn-sm btn-eco">+ Enregistrer</button></div>
+        ${[
+          ["Amougou Paul", "45 000 FCFA", "Scolarité T2", "Aujourd'hui"],
+          ["Nkeng Rose", "90 000 FCFA", "Inscription + T1", "Hier"],
+          ["Bele Pierre", "45 000 FCFA", "Scolarité T2", "16/03"],
+        ]
+          .map(
+            ([n, m, t, d]) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F8FAFC">
+            <div>
+              <div style="font-size:12px;font-weight:600">${n}</div>
+              <div style="font-size:11px;color:#64748B">${t} · ${d}</div>
+            </div>
+            <span style="font-weight:700;color:#059669;font-size:12px">${m}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 19,
+          title: "Page 19 — Enregistrer paiement",
+          sub: "Économe · Formulaire de paiement",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item act"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Enregistrer un paiement</h3></div>
+    <div style="display:grid;grid-template-columns:1fr 280px;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+        <div style="margin-bottom:14px">
+          <label class="form-label" style="display:block;margin-bottom:6px">Rechercher l'élève *</label>
+          <input class="form-input" style="width:100%" value="Amougou Paul" placeholder="Nom, prénom ou matricule...">
+        </div>
+        <!-- Résultat élève trouvé -->
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;gap:10px;align-items:center">
+            <div style="width:36px;height:36px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-weight:700;color:#15803D">AP</div>
+            <div><div style="font-weight:700;font-size:13px">Amougou Paul</div>
+            <div style="font-size:11px;color:#64748B">CE2-A · 2026-CE2-001</div></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#64748B">Solde actuel</div>
+            <div style="font-weight:800;color:#DC2626;font-size:14px">- 45 000 FCFA</div>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Type de frais *</label>
+            <select class="form-select"><option>Scolarité Trimestre 2</option><option>Inscription</option><option>Scolarité T1</option><option>Scolarité T3</option></select></div>
+          <div class="form-group"><label class="form-label">Montant versé (FCFA) *</label>
+            <input class="form-input" value="45 000" placeholder="0"></div>
+          <div class="form-group"><label class="form-label">Date du paiement *</label>
+            <input class="form-input" type="date" value="2026-03-18"></div>
+          <div class="form-group"><label class="form-label">Mode de paiement *</label>
+            <select class="form-select"><option>Espèces</option><option>Virement bancaire</option><option>Orange Money</option><option>MTN Mobile Money</option></select></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:10px;color:#92400E">Récapitulatif</h4>
+          ${[
+            ["Montant attendu", "90 000 FCFA"],
+            ["Déjà payé", "45 000 FCFA"],
+            ["Versement actuel", "45 000 FCFA"],
+            ["Nouveau solde", "0 FCFA"],
+          ]
+            .map(
+              ([l, v], i) =>
+                `<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #FEF3C7;${i === 3 ? "font-weight:700;color:#059669" : ""}">${l}<span>${v}</span></div>`,
+            )
+            .join("")}
+          <div style="margin-top:10px;background:#DCFCE7;border-radius:6px;padding:6px;text-align:center;font-size:11px;font-weight:700;color:#15803D">✓ Compte soldé</div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:6px;color:#0D2347">Numéro de reçu</h4>
+          <div style="font-family:monospace;font-size:13px;font-weight:800;color:#D97706;background:#FFFBEB;border-radius:6px;padding:8px;text-align:center">REC-2026-00047</div>
+          <div style="font-size:10px;color:#64748B;margin-top:4px;text-align:center">Généré automatiquement</div>
+        </div>
+        <button class="btn-sm btn-eco" style="justify-content:center;padding:11px;font-size:13px">✓ Confirmer et imprimer reçu</button>
+        <button class="btn-sm btn-ghost" style="justify-content:center">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 20,
+          title: "Page 20 — Liste des paiements",
+          sub: "Économe · Historique complet",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item act"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Historique des paiements</h3><div style="display:flex;gap:6px"><button class="btn-sm btn-ghost">↓ Export</button><button class="btn-sm btn-eco">+ Enregistrer</button></div></div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+      <input class="form-input" placeholder="Rechercher un élève..." style="flex:1;min-width:160px">
+      <select class="form-select"><option>Toutes les classes</option></select>
+      <select class="form-select"><option>Tous les types</option><option>Inscription</option><option>Scolarité T1</option><option>Scolarité T2</option></select>
+      <select class="form-select"><option>Tous modes</option><option>Espèces</option><option>Mobile Money</option></select>
+      <input class="form-input" type="date" style="width:130px">
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      <table class="m-table">
+        <thead><tr><th>N° Reçu</th><th>Élève</th><th>Classe</th><th>Type</th><th>Montant</th><th>Reste dû</th><th>Mode</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${[
+            [
+              "REC-2026-00047",
+              "Amougou Paul",
+              "CE2-A",
+              "Scolarité T2",
+              "45 000",
+              "0",
+              "Espèces",
+              "18/03",
+              "badge-green",
+            ],
+            [
+              "REC-2026-00046",
+              "Nkeng Rose",
+              "CE1-B",
+              "Inscription + T1",
+              "90 000",
+              "0",
+              "MTN MoMo",
+              "17/03",
+              "badge-green",
+            ],
+            [
+              "REC-2026-00045",
+              "Bele Pierre",
+              "CM1-A",
+              "Scolarité T2",
+              "30 000",
+              "15 000",
+              "Espèces",
+              "16/03",
+              "badge-gold",
+            ],
+            [
+              "REC-2026-00044",
+              "Fouda Jules",
+              "CM2-A",
+              "Scolarité T1",
+              "45 000",
+              "45 000",
+              "Orange",
+              "15/03",
+              "badge-gold",
+            ],
+            [
+              "REC-2026-00043",
+              "Essama Lea",
+              "CP-B",
+              "Inscription",
+              "25 000",
+              "0",
+              "Virement",
+              "14/03",
+              "badge-green",
+            ],
+            [
+              "REC-2026-00042",
+              "Moto Paul",
+              "CE2-B",
+              "Scolarité T2",
+              "20 000",
+              "25 000",
+              "Espèces",
+              "13/03",
+              "badge-red",
+            ],
+          ]
+            .map(
+              ([rn, n, c, t, m, r, md, d, b]) => `
+          <tr>
+            <td style="font-family:monospace;font-size:10px;color:#D97706;font-weight:600">${rn}</td>
+            <td style="font-weight:600;font-size:12px">${n}</td>
+            <td><span class="badge badge-blue">${c}</span></td>
+            <td style="font-size:11px">${t}</td>
+            <td style="font-weight:700;color:#059669">${m} F</td>
+            <td style="font-weight:${r === "0" ? "400" : "700"};color:${r === "0" ? "#64748B" : "#DC2626"}">${r === "0" ? "—" : r + " F"}</td>
+            <td style="font-size:11px;color:#64748B">${md}</td>
+            <td style="font-size:11px;color:#64748B">${d}</td>
+            <td><button class="btn-sm btn-ghost" style="font-size:10px">🖨️</button></td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 21,
+          title: "Page 21 — Aperçu reçu",
+          sub: "Économe · Reçu de paiement imprimable",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item act"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h3 style="font-size:13px;font-weight:700">Aperçu reçu — REC-2026-00047</h3>
+      <div style="display:flex;gap:6px">
+        <button class="btn-sm btn-ghost">↓ PDF</button>
+        <button class="btn-sm btn-eco">🖨️ Imprimer</button>
+      </div>
+    </div>
+    <div style="max-width:420px;margin:0 auto">
+      <div class="recu-box">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0D2347;padding-bottom:10px;margin-bottom:10px">
+          <div>
+            <div style="font-size:13px;font-weight:800;color:#0D2347">École Primaire Sainte-Marie</div>
+            <div style="font-size:10px;color:#64748B">Yaoundé · +237 699 000 000</div>
+          </div>
+          <div>
+            <div class="recu-num">REC-2026-00047</div>
+            <div style="font-size:9px;color:#64748B">18 Mars 2026 · 14:32</div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:700;color:#D97706;margin-bottom:10px;text-align:center;letter-spacing:1px">REÇU DE PAIEMENT</div>
+        <div style="font-size:11px;margin-bottom:12px">
+          ${[
+            ["Élève", "Amougou Paul"],
+            ["Classe", "CE2-A"],
+            ["Matricule", "2026-CE2-001"],
+          ]
+            .map(
+              ([l, v]) =>
+                `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #E2E8F0">
+              <span style="color:#64748B">${l}</span><span style="font-weight:600">${v}</span></div>`,
+            )
+            .join("")}
+        </div>
+        <div style="background:#FFFBEB;border-radius:6px;padding:10px;margin-bottom:12px;font-size:11px">
+          ${[
+            ["Type de frais", "Scolarité Trimestre 2"],
+            ["Montant attendu", "90 000 FCFA"],
+            ["Montant versé", "45 000 FCFA"],
+            ["Mode", "Espèces"],
+            ["Reste dû après", "0 FCFA"],
+          ]
+            .map(
+              ([l, v], i) =>
+                `<div style="display:flex;justify-content:space-between;padding:4px 0;${i === 4 ? "font-weight:700;color:#059669;border-top:1px solid #FDE68A;margin-top:4px;padding-top:8px" : ""}">
+              <span style="color:${i === 4 ? "#059669" : "#64748B"}">${l}</span><span>${v}</span></div>`,
+            )
+            .join("")}
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:10px;border-top:1px solid #E2E8F0;padding-top:10px">
+          <div><div style="font-weight:600;margin-bottom:16px">Signature économe :</div>
+          <div style="border-top:1px solid #999;padding-top:4px;color:#64748B">Fouda Marie</div></div>
+          <div><div style="font-weight:600;margin-bottom:16px">Cachet école :</div>
+          <div style="border-top:1px solid #999;padding-top:4px;color:#64748B;text-align:center">⬡</div></div>
+        </div>
+        <div style="margin-top:10px;text-align:center;font-size:9px;color:#94A3B8">Conservez ce reçu comme preuve de paiement</div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 22,
+          title: "Page 22 — Impayés",
+          sub: "Économe · Suivi des familles en retard",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item act"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Suivi des impayés <span style="color:#DC2626">(47 élèves)</span></h3><button class="btn-sm btn-ghost">↓ Export PDF</button></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div class="kpi-card" style="border-left:3px solid #DC2626"><div class="kpi-val" style="color:#DC2626">2,4M</div><div class="kpi-lbl">Total impayés (FCFA)</div></div>
+      <div class="kpi-card" style="border-left:3px solid #D97706"><div class="kpi-val" style="color:#D97706">47</div><div class="kpi-lbl">Élèves concernés</div></div>
+      <div class="kpi-card" style="border-left:3px solid #2563EB"><div class="kpi-val" style="color:#2563EB">51 100</div><div class="kpi-lbl">Moyenne par élève (FCFA)</div></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="form-input" placeholder="Rechercher..." style="flex:1">
+      <select class="form-select"><option>Toutes les classes</option></select>
+      <select class="form-select"><option>Trier par dette ↓</option><option>Trier par nom</option></select>
+      <select class="form-select"><option>Tout afficher</option><option>> 50 000 FCFA</option><option>> 30 000 FCFA</option></select>
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      <table class="m-table">
+        <thead><tr><th>Élève</th><th>Classe</th><th>Tuteur</th><th>Téléphone</th><th>Dette totale</th><th>Dernier paiement</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${[
+            [
+              "Fouda Jules",
+              "CM2-A",
+              "Fouda Hélène",
+              "+237 699 111",
+              "135 000 F",
+              "badge-red",
+              "02/01/2026",
+            ],
+            [
+              "Tabi Paul",
+              "CE2-B",
+              "Tabi Mathieu",
+              "+237 655 222",
+              "90 000 F",
+              "badge-red",
+              "Aucun",
+            ],
+            [
+              "Moto Paul",
+              "CE2-B",
+              "Moto Jean",
+              "+237 677 333",
+              "45 000 F",
+              "badge-gold",
+              "01/03/2026",
+            ],
+            [
+              "Ngono Sarah",
+              "CM1-B",
+              "Ngono Anne",
+              "+237 699 444",
+              "45 000 F",
+              "badge-gold",
+              "15/02/2026",
+            ],
+            [
+              "Akoa Jean",
+              "CP-A",
+              "Akoa Pierre",
+              "+237 655 555",
+              "35 000 F",
+              "badge-gold",
+              "28/02/2026",
+            ],
+            [
+              "Buma Rose",
+              "CE1-A",
+              "Buma Lucie",
+              "+237 677 666",
+              "25 000 F",
+              "badge-gold",
+              "10/03/2026",
+            ],
+          ]
+            .map(
+              ([n, c, t, tel, d, b, dp]) => `
+          <tr>
+            <td style="font-weight:600;font-size:12px">${n}</td>
+            <td><span class="badge badge-blue">${c}</span></td>
+            <td style="font-size:11px">${t}</td>
+            <td style="font-family:monospace;font-size:10px;color:#64748B">${tel}</td>
+            <td><span class="badge ${b}" style="font-size:11px;font-weight:700">${d}</span></td>
+            <td style="font-size:11px;color:${dp === "Aucun" ? "#DC2626" : "#64748B"}">${dp}</td>
+            <td><button class="btn-sm btn-eco" style="font-size:10px;padding:3px 8px">Paiement</button></td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 23,
+          title: "Page 23 — Configuration des frais",
+          sub: "Économe · Types et montants de frais",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item act"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Configuration des frais scolaires</h3><button class="btn-sm btn-eco">+ Nouveau type</button></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+        <div style="background:#FFFBEB;padding:12px 14px;border-bottom:1px solid #FDE68A;font-size:12px;font-weight:700;color:#92400E">Types de frais configurés</div>
+        <table class="m-table" style="font-size:11px">
+          <thead><tr><th>Type</th><th>Montant</th><th>Niveau</th><th>Obligatoire</th><th></th></tr></thead>
+          <tbody>
+            ${[
+              ["Inscription", "25 000 FCFA", "Tous", "Oui", "badge-red"],
+              ["Scolarité T1", "45 000 FCFA", "CP–CE2", "Oui", "badge-red"],
+              ["Scolarité T1", "50 000 FCFA", "CM1–CM2", "Oui", "badge-red"],
+              ["Scolarité T2", "45 000 FCFA", "CP–CE2", "Oui", "badge-red"],
+              ["Scolarité T2", "50 000 FCFA", "CM1–CM2", "Oui", "badge-red"],
+              ["Frais examens", "10 000 FCFA", "CM2", "Non", "badge-gray"],
+              ["Cantine", "15 000 FCFA", "Tous", "Non", "badge-gray"],
+            ]
+              .map(
+                ([t, m, n, o, b]) => `
+            <tr><td style="font-weight:500">${t}</td><td style="font-weight:700;color:#D97706">${m}</td>
+            <td><span class="badge badge-blue" style="font-size:9px">${n}</span></td>
+            <td><span class="badge ${b}" style="font-size:9px">${o}</span></td>
+            <td><button class="btn-sm btn-ghost" style="font-size:9px;padding:2px 6px">✏️</button></td></tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+          <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Nouveau type de frais</h4>
+          <div class="form-group" style="margin-bottom:10px"><label class="form-label">Nom du type</label><input class="form-input" placeholder="Ex: Frais de sortie scolaire"></div>
+          <div class="form-grid" style="margin-bottom:10px">
+            <div class="form-group"><label class="form-label">Montant (FCFA)</label><input class="form-input" placeholder="0"></div>
+            <div class="form-group"><label class="form-label">Niveau cible</label><select class="form-select"><option>Tous</option><option>CP</option><option>CE1</option><option>CM2</option></select></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:12px">
+            <input type="checkbox" id="obl"><label for="obl">Frais obligatoire</label>
+          </div>
+          <button class="btn-sm btn-eco" style="width:100%;justify-content:center">+ Créer ce type de frais</button>
+        </div>
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px">
+          <h4 style="font-size:11px;font-weight:700;margin-bottom:8px;color:#92400E">Application en masse</h4>
+          <p style="font-size:11px;color:#78350F;margin-bottom:10px">Appliquer un type de frais à toute une classe en un clic</p>
+          <select class="form-select" style="width:100%;margin-bottom:8px"><option>Choisir un type de frais</option></select>
+          <select class="form-select" style="width:100%;margin-bottom:8px"><option>Choisir une classe</option></select>
+          <button class="btn-sm btn-eco" style="width:100%;justify-content:center;font-size:11px">⚡ Appliquer à tous les élèves</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 24,
+          title: "Page 24 — Rapport financier",
+          sub: "Économe · Bilan et export comptable",
+          role: "Économe",
+          roleColor: "#FEF3C7",
+          roleTxt: "#92400E",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Fouda Marie</div><div class="urole">Économe</div></div><div class="av" style="background:#D97706">FM</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">💰</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">➕</span>Enregistrer</div>
+    <div class="m-nav-item"><span class="ico">📋</span>Paiements</div>
+    <div class="m-nav-item"><span class="ico">⚠️</span>Impayés</div>
+    <div class="m-nav-item"><span class="ico">⚙️</span>Frais</div>
+    <div class="m-nav-item act"><span class="ico">📊</span>Rapport</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Rapport financier</h3>
+      <div style="display:flex;gap:6px">
+        <select class="form-select" style="font-size:11px"><option>Trimestre 2 — 2025-2026</option><option>Trimestre 1</option><option>Année complète</option></select>
+        <button class="btn-sm btn-ghost">↓ Export PDF</button>
+        <button class="btn-sm btn-eco">↓ Export Excel</button>
+      </div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card" style="border-left:3px solid #059669"><div class="kpi-val" style="color:#059669">4,2M</div><div class="kpi-lbl">Encaissé T2</div></div>
+      <div class="kpi-card" style="border-left:3px solid #D97706"><div class="kpi-val" style="color:#D97706">5,4M</div><div class="kpi-lbl">Attendu T2</div></div>
+      <div class="kpi-card" style="border-left:3px solid #DC2626"><div class="kpi-val" style="color:#DC2626">1,2M</div><div class="kpi-lbl">Écart T2</div></div>
+      <div class="kpi-card" style="border-left:3px solid #2563EB"><div class="kpi-val" style="color:#2563EB">78%</div><div class="kpi-lbl">Taux T2</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Encaissements par type de frais</h3>
+        <table class="m-table" style="font-size:11px">
+          <thead><tr><th>Type</th><th>Attendu</th><th>Encaissé</th><th>Taux</th></tr></thead>
+          <tbody>
+            ${[
+              ["Inscription", "867 500", "867 500", "100%", "badge-green"],
+              ["Scolarité T1", "2 610 000", "2 349 000", "90%", "badge-green"],
+              ["Scolarité T2", "2 610 000", "2 040 000", "78%", "badge-gold"],
+              ["Frais examen", "347 000", "180 000", "52%", "badge-red"],
+            ]
+              .map(
+                ([t, a, e, p, b]) => `
+            <tr><td>${t}</td><td style="color:#64748B">${a}</td><td style="font-weight:700;color:#059669">${e}</td>
+            <td><span class="badge ${b}">${p}</span></td></tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px">
+        <h3 style="font-size:12px;font-weight:700;margin-bottom:10px">Recouvrement par classe</h3>
+        ${[
+          ["CP-A", "100%", "#059669"],
+          ["CP-B", "93%", "#059669"],
+          ["CE1-A", "88%", "#059669"],
+          ["CE2-A", "84%", "#D97706"],
+          ["CM1-A", "72%", "#D97706"],
+          ["CM2-B", "58%", "#DC2626"],
+        ]
+          .map(
+            ([c, p, col]) => `
+          <div style="margin-bottom:7px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px">
+              <span style="font-weight:600">${c}</span>
+              <span style="font-weight:700;color:${col}">${p}</span>
+            </div>
+            <div class="stat-bar"><div class="stat-fill" style="width:${p};background:${col}"></div></div>
+          </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 25,
+          title: "Page 25 — Mon profil / Compte",
+          sub: "Commun · Tous les rôles",
+          role: "Commun",
+          roleColor: "#F1F5F9",
+          roleTxt: "#475569",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">Nkodo Pierre</div><div class="urole">Enseignant</div></div><div class="av" style="background:#7C3AED">NP</div></div></div>
+<div style="background:#F8FAFC;min-height:calc(100% - 54px);padding:24px;display:flex;justify-content:center">
+  <div style="max-width:520px;width:100%">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px">Mon profil</h3>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:20px;margin-bottom:14px;text-align:center">
+      <div style="width:72px;height:72px;border-radius:50%;background:#F5F3FF;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#7C3AED;border:3px solid #DDD6FE">NP</div>
+      <div style="font-size:16px;font-weight:800;color:#0D2347">Nkodo Pierre</div>
+      <div style="margin-top:4px"><span class="badge badge-purp">Enseignant</span></div>
+      <div style="font-size:12px;color:#64748B;margin-top:6px">p.nkodo@ecole.cm</div>
+      <div style="font-size:11px;color:#94A3B8;margin-top:2px">Dernière connexion : Aujourd'hui à 08:47</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:14px">
+      <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Mes informations</h4>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Prénom</label><input class="form-input" value="Pierre"></div>
+        <div class="form-group"><label class="form-label">Nom</label><input class="form-input" value="Nkodo"></div>
+        <div class="form-group"><label class="form-label" style="grid-column:1/-1">Email</label><input class="form-input" value="p.nkodo@ecole.cm" style="grid-column:1/-1"></div>
+      </div>
+      <button class="btn-sm btn-primary" style="margin-top:12px">💾 Mettre à jour</button>
+    </div>
+    <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px">
+      <h4 style="font-size:12px;font-weight:700;margin-bottom:12px;color:#0D2347">Changer le mot de passe</h4>
+      <div class="form-group" style="margin-bottom:8px"><label class="form-label">Mot de passe actuel</label><input class="form-input" type="password" placeholder="••••••••"></div>
+      <div class="form-group" style="margin-bottom:8px"><label class="form-label">Nouveau mot de passe</label><input class="form-input" type="password" placeholder="••••••••"></div>
+      <div class="form-group" style="margin-bottom:12px"><label class="form-label">Confirmer</label><input class="form-input" type="password" placeholder="••••••••"></div>
+      <button class="btn-sm btn-primary">🔒 Modifier le mot de passe</button>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          id: 26,
+          title: "Page 26 — Configuration année scolaire",
+          sub: "Directeur · Séquences et trimestres",
+          role: "Directeur",
+          roleColor: "#DBEAFE",
+          roleTxt: "#1D4ED8",
+          html: `
+<div class="m-appbar"><div class="m-appbar-logo">EduSchool Manager</div><div class="m-appbar-user"><div class="uinfo"><div class="uname">M. Dupont Jean</div><div class="urole">Directeur</div></div><div class="av" style="background:#2563EB">DJ</div></div></div>
+<div class="m-layout">
+  <div class="m-nav">
+    <div class="m-nav-item"><span class="ico">📊</span>Tableau de bord</div>
+    <div class="m-nav-item"><span class="ico">👥</span>Utilisateurs</div>
+    <div class="m-nav-item"><span class="ico">📈</span>Statistiques</div>
+    <div class="m-nav-item"><span class="ico">🔍</span>Audit</div>
+    <div class="m-nav-item act"><span class="ico">⚙️</span>Config. école</div>
+  </div>
+  <div class="m-content">
+    <div class="section-hdr"><h3>Configuration de l'année scolaire 2025-2026</h3><button class="btn-sm btn-primary">💾 Enregistrer</button></div>
+    <div class="alert alert-blue">ℹ️ <span>La <strong>Séquence 3</strong> est actuellement active. Toute modification est possible uniquement sur les séquences futures.</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">
+      ${[
+        [
+          "Trimestre 1",
+          "Septembre – Novembre 2025",
+          [
+            ["Séquence 1", "15/09", "15/10", "Terminée", "badge-gray"],
+            ["Séquence 2", "17/10", "15/11", "Terminée", "badge-gray"],
+          ],
+        ],
+        [
+          "Trimestre 2",
+          "Décembre 2025 – Mars 2026",
+          [
+            ["Séquence 3", "01/12", "15/01", "En cours", "badge-blue"],
+            ["Séquence 4", "19/01", "20/03", "À venir", "badge-gray"],
+          ],
+        ],
+        [
+          "Trimestre 3",
+          "Avril – Juin 2026",
+          [
+            ["Séquence 5", "01/04", "02/05", "À venir", "badge-gray"],
+            ["Séquence 6", "04/05", "15/06", "À venir", "badge-gray"],
+          ],
+        ],
+      ]
+        .map(
+          ([tri, period, seqs], ti) => `
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+          <div style="background:#0D2347;padding:12px 14px">
+            <div style="color:#fff;font-size:13px;font-weight:700">${tri}</div>
+            <div style="color:#7094C4;font-size:11px;margin-top:2px">${period}</div>
+          </div>
+          <div style="padding:12px">
+            ${seqs
+              .map(
+                ([sn, sd, ed, st, sb]) => `
+              <div style="border:1px solid ${st === "En cours" ? "#BFDBFE" : "#E2E8F0"};border-radius:8px;padding:10px;margin-bottom:8px;background:${st === "En cours" ? "#EFF6FF" : "#fff"}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                  <span style="font-weight:700;font-size:12px">${sn}</span>
+                  <span class="badge ${sb}">${st}</span>
+                </div>
+                <div style="display:flex;gap:8px;font-size:11px">
+                  <div class="form-group" style="flex:1"><label class="form-label" style="font-size:10px">Début</label>
+                    <input class="form-input" style="font-size:11px;padding:4px 6px" value="${sd}" ${st !== "À venir" ? "disabled" : ""}></div>
+                  <div class="form-group" style="flex:1"><label class="form-label" style="font-size:10px">Fin</label>
+                    <input class="form-input" style="font-size:11px;padding:4px 6px" value="${ed}" ${st !== "À venir" ? "disabled" : ""}></div>
+                </div>
+                ${st === "En cours" ? `<div style="margin-top:6px;font-size:10px;color:#2563EB;font-weight:600">🔴 Active — Verrouillage auto le ${ed}</div>` : ""}
+              </div>`,
+              )
+              .join("")}
+          </div>
+        </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+</div>`,
+        },
+      ];
+
+      let current = 1;
+      function go(n, el) {
+        current = n;
+        document
+          .querySelectorAll(".sb-item")
+          .forEach((i) => i.classList.remove("active"));
+        el.classList.add("active");
+        render();
+      }
+      function prev() {
+        if (current > 1) {
+          current--;
+          updateActive();
+          render();
+        }
+      }
+      function next() {
+        if (current < 26) {
+          current++;
+          updateActive();
+          render();
+        }
+      }
+      function updateActive() {
+        document.querySelectorAll(".sb-item").forEach((el, i) => {
+          el.classList.toggle("active", i === current - 1);
+        });
+      }
+      function render() {
+        const p = pages.find((x) => x.id === current);
+        document.getElementById("page-title").textContent = p.title;
+        document.getElementById("page-sub").textContent = p.sub;
+        const rb = document.getElementById("role-badge");
+        rb.textContent = p.role;
+        rb.style.background = p.roleColor;
+        rb.style.color = p.roleTxt;
+        document.getElementById("mockup-content").innerHTML = p.html;
+      }
+      render();
+    </script>
+  </body>
+</html>
