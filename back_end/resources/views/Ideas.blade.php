@@ -16,17 +16,14 @@
     </form>
 
     <div>
-        @if(count($ideas))
-            88e12837-ac0f-474b-ba7f-bfb8674a4693
-            3A8X091091439
-
+        @if($ideas->count())
         <h1 class="font-bold">
             Your Ideas
         </h1>
         <ul class="mt-6">
             @foreach($ideas as $idea )
         <li class="text-sm">
-                {{ $idea }}
+                {{ $idea->description }}
         </li>
             @endforeach
         </ul>
