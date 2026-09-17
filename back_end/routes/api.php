@@ -8,8 +8,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// AUth routes for login, register and logout   
-Route::match(['get','post'],'login',[AuthController::class,'login']);
-Route::match(['get','post'],'register',[AuthController::class,'register']);
-Route::match(['get','post'],'forgot-password',[AuthController::class,'forgotPassword']);
-Route::match(['get','post'],'logout',[AuthController::class,'logout']);     
+// AUth routes for login, register and logout 
+Route::post('/register', [AuthController::class , 'register']);  
+Route::post('/login',[AuthController::class, 'login']);
+Route::post('/forgot-password',[AuthController::class, 'forgot-password']);
+Route::post('/reset-password', [AuthController::class, 'reset-password']);
+Route::post('/logout', [AuthController::class, 'logout']);
