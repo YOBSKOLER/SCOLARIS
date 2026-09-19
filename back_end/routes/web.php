@@ -3,7 +3,6 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\VoitureController;
-use App\Models\Idea;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
