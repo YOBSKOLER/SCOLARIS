@@ -25,18 +25,45 @@ Route::get('/ideas', function () {
     ]);
 })->name('ideas');
 
+//show the idea with the given id
+Route::get('/ideas/{idea}', function (Idea $idea) {
+           return view('idea', [
+        'ideas' => $idea,
+        ]);
+    
+})->name('ideas');
+
+//Edit the idea with the given id
+Route::get('/ideas/{idea}/edit', function (Idea $idea) {
+
+    return view('edit', [
+        'ideas' => $idea,
+        ]);
+    
+})->name('ideas.edit');
+//Edit the idea with the given id
+Route::patch('/ideas/{idea}', function (Idea $idea) {
+$idea->update([
+    'description' => request('description'),
+]);
+    return redirect("/ideas/{$idea->id }")->with('success', 'Idea updated successfully!');
+})->name('ideas.update');
+
+
+//store action for the idea
 Route::post('/ideas', function () {
     Idea::create([
-        'description' => request('idea'),
+        'description' => request('description'),
         'state' => 'pending',
     ]);
 
     return redirect('/ideas');
 });
 
-Route::get('/delete-ideas', function () {
-    session()->forget('ideas');
 
+//destoy action for the idea
+Route::delete('/delete-ideas/{idea}', function (Idea $idea) {
+    $idea->delete();
     return redirect('/ideas');
 })->name('delete-ideas');
 
